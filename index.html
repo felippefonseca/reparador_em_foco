@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reparador em Foco, Campinas/SP</title>
+  <meta name="description" content="Imersão presencial para donos de oficina mecânica em Campinas/SP. Gestão, precificação, processos e lucro para oficinas." />
+  <link rel="icon" type="image/svg+xml" href="assets/logo-reparador-avatar.svg" />
+  <link rel="alternate icon" type="image/png" href="assets/logo-reparador-campinas.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#050a12;
+      --bg-2:#07111c;
+      --bg-3:#0a1828;
+      --card:#0b1623;
+      --card-2:#0e1d2d;
+      --ink:#f7fbff;
+      --muted:#aebdce;
+      --muted-2:#7f92a8;
+      --line:rgba(255,255,255,.10);
+      --line-2:rgba(42,185,255,.32);
+      --blue:#0ba6ff;
+      --cyan:#47dbff;
+      --aqua:#65f6d1;
+      --orange:#ff9f1a;
+      --yellow:#ffd84d;
+      --green:#16c866;
+      --red:#ff6272;
+      --shadow:0 26px 80px rgba(0,0,0,.38);
+      --max:1180px;
+      --font:'Inter',system-ui,-apple-system,sans-serif;
+      --display:'Oswald',Impact,sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{font-family:var(--font);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body.modal-open{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    .container{width:min(var(--max),calc(100% - 48px));margin-inline:auto;position:relative;z-index:2}
+    .section{position:relative;padding:104px 0}
+    .section::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.38;
+      background-image:linear-gradient(rgba(0,166,255,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(0,166,255,.026) 1px,transparent 1px);
+      background-size:66px 66px;
+      mask-image:linear-gradient(to bottom,transparent,black 16%,black 82%,transparent)
+    }
+    .section-soft{background:linear-gradient(180deg,#07111c,#091827)}
+
+    .section-blueprint{background:
+      radial-gradient(circle at 15% 12%,rgba(11,166,255,.16),transparent 34%),
+      linear-gradient(180deg,#06101b,#081b2e 55%,#050a12);
+    }
+    .section-amber{background:
+      radial-gradient(circle at 82% 10%,rgba(255,159,26,.14),transparent 34%),
+      radial-gradient(circle at 18% 24%,rgba(11,166,255,.10),transparent 30%),
+      linear-gradient(180deg,#070d16,#0c1724);
+    }
+    .section-deep{background:
+      radial-gradient(circle at 50% 0%,rgba(101,246,209,.10),transparent 30%),
+      linear-gradient(180deg,#040912,#07111c);
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:9998;
+      opacity:.038;
+      mix-blend-mode:screen;
+      background-image:
+        radial-gradient(circle,rgba(255,255,255,.55) .45px,transparent .9px),
+        radial-gradient(circle,rgba(71,219,255,.32) .35px,transparent .85px),
+        radial-gradient(circle,rgba(255,159,26,.22) .35px,transparent .9px);
+      background-size:42px 42px,67px 67px,93px 93px;
+      background-position:0 0,18px 26px,48px 12px;
+      animation:particleNoise 8s linear infinite;
+    }
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:9997;
+      opacity:.018;
+      mix-blend-mode:screen;
+      background-image:radial-gradient(circle,rgba(255,255,255,.55) .4px,transparent 1px);
+      background-size:28px 28px;
+      animation:particleNoiseFine 5s linear infinite;
+    }
+    @keyframes particleNoise{
+      0%{transform:translate3d(0,0,0)}
+      25%{transform:translate3d(-10px,8px,0)}
+      50%{transform:translate3d(7px,-11px,0)}
+      75%{transform:translate3d(-6px,-5px,0)}
+      100%{transform:translate3d(0,0,0)}
+    }
+    @keyframes particleNoiseFine{
+      0%{transform:translate3d(0,0,0)}
+      50%{transform:translate3d(8px,6px,0)}
+      100%{transform:translate3d(0,0,0)}
+    }
+
+    .section-open{background:radial-gradient(circle at 16% 10%,rgba(11,166,255,.12),transparent 32%),radial-gradient(circle at 88% 18%,rgba(255,159,26,.08),transparent 30%),var(--bg)}
+
+    h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:-.025em;line-height:.94}
+    h1{font-size:clamp(52px,7vw,104px);max-width:780px}
+    h2{font-size:clamp(38px,5vw,72px);margin-bottom:24px;max-width:980px}
+    h3{font-size:clamp(22px,2.1vw,34px)}
+    p{color:var(--muted);font-size:17px;line-height:1.72}
+    .lead{font-size:clamp(18px,1.65vw,22px);line-height:1.62;color:#d9e5f1;max-width:820px}
+
+    .grad-blue{background:linear-gradient(90deg,var(--blue),var(--cyan),var(--aqua));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .grad-warm{background:linear-gradient(90deg,var(--orange),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .micro{display:inline-flex;gap:10px;align-items:center;margin-bottom:18px;color:var(--cyan);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.14em}
+    .micro::before{content:"";width:40px;height:1px;background:linear-gradient(90deg,var(--blue),transparent)}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:54px;padding:0 24px;border-radius:999px;font-size:13px;font-weight:900;
+      letter-spacing:.05em;text-transform:uppercase;border:1px solid transparent;
+      transition:.22s ease;cursor:pointer;white-space:nowrap
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--blue),#0072d5);box-shadow:0 20px 50px rgba(0,166,255,.30);color:#fff}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 28px 60px rgba(0,166,255,.40)}
+    .btn-outline{background:rgba(255,255,255,.045);border-color:var(--line);color:#dce8f4}
+    .btn-outline:hover{background:rgba(11,166,255,.08);border-color:var(--line-2)}
+    .btn-secondary{background:linear-gradient(135deg,#111d2d,#18273a);border:1px solid var(--line);color:#fff}
+    .btn-secondary:hover{transform:translateY(-2px)}
+    .wa-svg{width:22px;height:22px;display:block;flex:0 0 22px}
+
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease;will-change:opacity,transform}
+    .reveal.show{opacity:1;transform:none}.reveal.hide-up{opacity:0;transform:translateY(-24px)}
+
+    /* NAV */
+    .nav{
+      position:fixed;top:0;left:0;right:0;height:76px;z-index:40;
+      background:rgba(5,10,18,.38);backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      transition:background .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease,opacity .25s ease
+    }
+    .nav.scrolled{background:rgba(5,10,18,.86);border-bottom-color:rgba(255,255,255,.10);box-shadow:0 12px 38px rgba(0,0,0,.25)}
+    .nav-inner{width:min(1280px,calc(100% - 48px));height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{opacity:0;transform:translateY(-6px);pointer-events:none;transition:.25s ease}
+    .nav.scrolled .brand{opacity:1;transform:none;pointer-events:auto}
+    .brand img{height:62px;width:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.36))}
+    .nav-links{display:flex;align-items:center;gap:24px;font-size:13px;font-weight:800;color:var(--muted)}
+    .nav-links a:hover{color:#fff}
+    .nav .btn{min-height:46px;padding-inline:18px}
+
+    /* HERO */
+    .hero{
+      position:relative;min-height:100svh;padding:126px 0 80px;display:flex;align-items:center;
+      overflow:hidden;background:#06111d
+    }
+    .hero-bg,.hero-overlay{position:absolute;inset:0}
+    .hero-bg picture,.hero-bg img{width:100%;height:100%}
+    .hero-bg img{object-fit:cover;object-position:74% center;transform:scale(1.005)}
+    .hero-overlay{
+      z-index:1;
+      background:
+        linear-gradient(90deg,rgba(5,10,18,.86) 0%,rgba(5,10,18,.74) 31%,rgba(5,10,18,.20) 56%,rgba(5,10,18,.02) 100%),
+        linear-gradient(0deg,rgba(5,10,18,.92) 0%,rgba(5,10,18,.02) 36%,rgba(5,10,18,0) 100%);
+    }
+    .hero::after{
+      content:"";position:absolute;right:-90px;top:-80px;width:540px;height:540px;border-radius:50%;
+      background:radial-gradient(circle,rgba(11,166,255,.18),transparent 64%);
+      filter:blur(8px);z-index:1;pointer-events:none
+    }
+    .hero .container{z-index:2}
+    .hero-content{max-width:690px;margin-left:0}
+    .hero-logo{width:min(235px,55vw);margin-bottom:28px;filter:drop-shadow(0 16px 28px rgba(0,0,0,.44))}
+    .hero-kicker{display:inline-flex;align-items:center;gap:12px;color:#d8eefc;text-transform:uppercase;font-size:12px;font-weight:900;letter-spacing:.16em;margin-bottom:18px}
+    .hero-kicker::before{content:"";width:48px;height:1px;background:var(--blue)}
+    .hero h1{margin-bottom:18px;text-shadow:0 18px 45px rgba(0,0,0,.38)}
+    .hero-sub{margin:24px 0 26px;color:#d7e4f1;max-width:650px}
+    .authority-line{display:inline-block;margin:0 0 18px;padding:11px 15px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);font-size:13px;color:#eaf6ff;font-weight:800;line-height:1.45}
+    .authority-line b{color:var(--cyan);white-space:nowrap}
+    .hero-info{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+    .hero-info span{display:inline-flex;align-items:center;padding:11px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#e8f4ff;font-size:13px;font-weight:800}
+    .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+    .hero-mini{margin-top:18px;color:var(--muted-2);font-size:13px}
+    .scroll-note{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:2;font-size:12px;color:var(--muted-2);text-transform:uppercase;letter-spacing:.16em}
+
+    .countdown-wrap{margin:22px 0 0;max-width:610px}
+    .countdown-context{font-size:13px;color:#d6e6f5;margin-bottom:10px}
+    .countdown-card{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .countdown-item{padding:14px 12px;border-radius:16px;border:1px solid var(--line-2);background:linear-gradient(145deg,rgba(11,166,255,.16),rgba(255,255,255,.05));text-align:center;box-shadow:inset 0 0 30px rgba(11,166,255,.04)}
+    .countdown-item strong{display:block;font-family:var(--display);font-size:34px;line-height:1;color:#fff}
+    .countdown-item span{display:block;margin-top:6px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--muted-2)}
+
+    /* Proof strip */
+    .proof{border-block:1px solid var(--line);background:linear-gradient(90deg,#06101b,#0a1726,#06101b)}
+    .proof-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .proof-item{padding:28px 24px;border-right:1px solid var(--line)}
+    .proof-item:last-child{border-right:none}
+    .proof-item strong{display:block;font-family:var(--display);font-size:28px;color:#fff;margin-bottom:6px}
+    .proof-item span{display:block;color:var(--muted-2);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+
+    .split{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:start}
+    .quote-box{position:sticky;top:104px;padding:36px;border-radius:28px;background:linear-gradient(145deg,rgba(255,98,114,.12),rgba(255,255,255,.035));border:1px solid rgba(255,98,114,.22);box-shadow:var(--shadow)}
+    .quote-box p{font-family:var(--display);font-size:clamp(30px,3vw,50px);line-height:1.02;text-transform:uppercase;color:#fff}
+    .quote-box small{display:block;margin-top:20px;color:#d6e3ee;line-height:1.65}
+    .checks{display:grid;gap:14px;margin-top:28px}
+    .check{display:flex;gap:14px;align-items:flex-start;padding:18px;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:18px;transition:.2s ease}
+    .check:hover{border-color:var(--line-2);transform:translateY(-2px)}
+    .check i{width:22px;height:22px;border-radius:50%;background:rgba(11,166,255,.12);border:1px solid var(--line-2);display:block;position:relative;flex:0 0 22px;margin-top:2px}
+    .check i::after{content:"";position:absolute;left:6px;top:7px;width:8px;height:4px;border-left:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:rotate(-45deg)}
+    .check span{color:#d8e5f0;line-height:1.55}
+
+    .compare{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:42px}
+    .compare-card{padding:34px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .compare-card.good{background:linear-gradient(145deg,rgba(131,247,194,.12),rgba(255,255,255,.03));border-color:rgba(131,247,194,.22)}
+    .compare-card.bad{background:linear-gradient(145deg,rgba(255,98,114,.11),rgba(255,255,255,.03));border-color:rgba(255,98,114,.20)}
+    .compare-card span{display:block;font-size:12px;color:var(--muted-2);text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:16px}
+
+    .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+    .value-grid.four{grid-template-columns:repeat(4,1fr)}
+    .value-card{padding:30px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.02));position:relative;overflow:hidden;transition:.25s ease}
+    .value-card:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:0 18px 50px rgba(0,0,0,.24)}
+    .value-card::after{content:"";position:absolute;right:-22px;top:-22px;width:90px;height:90px;border:1px solid rgba(255,255,255,.08);border-radius:50%}
+    .value-card b{display:inline-flex;width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;background:rgba(11,166,255,.12);border:1px solid var(--line-2);font-family:var(--display);font-size:20px;color:var(--cyan);margin-bottom:20px}
+    .value-card h3{margin-bottom:14px}
+    .value-card p{font-size:15px}
+    .value-card.accent{background:linear-gradient(145deg,rgba(11,166,255,.16),rgba(255,255,255,.03));border-color:var(--line-2)}
+
+    .audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:42px}
+    .audience-box{padding:32px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.02))}
+    .audience-box h3{margin-bottom:20px}
+    .audience-box.good{border-color:rgba(131,247,194,.22);background:linear-gradient(145deg,rgba(131,247,194,.10),rgba(255,255,255,.025))}
+    .audience-box.no{border-color:rgba(255,98,114,.20);background:linear-gradient(145deg,rgba(255,98,114,.09),rgba(255,255,255,.025))}
+    .audience-list{display:grid;gap:12px}
+    .audience-list li{list-style:none;color:#d8e5f0;line-height:1.55;display:flex;gap:10px}
+    .audience-list li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);flex:0 0 8px;margin-top:9px}
+    .audience-box.no .audience-list li::before{background:var(--red)}
+
+    /* Emotion */
+    .emotion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:42px}
+    .emotion-card{border:1px dashed rgba(255,255,255,.18);border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#0c1928,#09131f);transition:.25s ease}
+    .emotion-card:hover{transform:translateY(-5px);border-color:var(--line-2);box-shadow:0 18px 54px rgba(0,0,0,.28)}
+    .emotion-thumb{aspect-ratio:4/5;background:#09131f;position:relative;overflow:hidden}
+    .emotion-thumb img{width:100%;height:100%;object-fit:cover;transition:.45s ease}
+    .emotion-card:hover .emotion-thumb img{transform:scale(1.045)}
+    .emotion-copy{padding:20px}
+    .emotion-copy strong{display:block;font-size:14px;color:#fff;margin-bottom:8px}
+    .emotion-copy p{font-size:14px;line-height:1.6;color:var(--muted)}
+    .emotion-copy .tag{display:inline-block;margin-bottom:12px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--orange)}
+
+    /* CTA cards */
+    .section-cta{margin-top:34px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+    .section-cta-note{color:var(--muted-2);font-size:13px;line-height:1.5}
+    .inline-cta-card{margin-top:44px;padding:28px;border-radius:24px;border:1px solid var(--line-2);background:linear-gradient(135deg,rgba(11,166,255,.14),rgba(255,159,26,.06),rgba(255,255,255,.025));display:flex;align-items:center;justify-content:space-between;gap:22px;box-shadow:0 18px 56px rgba(0,0,0,.22)}
+    .inline-cta-card strong{display:block;font-family:var(--display);font-size:34px;line-height:1;text-transform:uppercase;color:#fff;margin-bottom:8px}
+    .inline-cta-card span{display:block;color:var(--muted);font-size:15px;line-height:1.55}
+
+    /* Speaker */
+    .speaker{padding:96px 0;background:linear-gradient(180deg,#040912,#07111c)}
+    .speaker-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:28px;align-items:start}
+    .speaker-gallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:300px 250px;gap:16px}
+    .photo-card{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#091521;position:relative;box-shadow:var(--shadow)}
+    .photo-card img{width:100%;height:100%;object-fit:cover;transition:.45s ease}
+    .photo-card:hover img{transform:scale(1.04)}
+    .photo-card.main{grid-row:span 2}
+    .photo-card .tag{position:absolute;left:16px;bottom:16px;padding:10px 12px;border-radius:999px;background:rgba(5,10,18,.74);border:1px solid rgba(255,255,255,.12);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}
+    .speaker-panel{padding:12px 0 0 22px}
+    .curriculum{display:grid;gap:12px;margin:28px 0}
+    .curriculum li{list-style:none;display:flex;gap:12px;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;color:#d8e5f0;line-height:1.55}
+    .curriculum li::before{content:"";width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 0 0 5px rgba(11,166,255,.10);margin-top:8px;flex:0 0 10px}
+    .partner-label{display:block;color:var(--muted-2);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;margin:28px 0 14px}
+    .partner-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .partner-pill{min-height:64px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;overflow:hidden}
+    .partner-pill img{max-height:36px;max-width:145px;width:auto;object-fit:contain}
+    .partner-pill.logo-light{background:#f5f8fb}
+    .partner-pill.logo-dark img{filter:none}
+
+    /* Venue */
+    .venue-mosaic{display:grid;grid-template-columns:1.12fr .8fr .8fr;grid-template-rows:250px 128px 128px;gap:16px;margin-top:42px}
+    .venue-card{position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--line);background:#091521;box-shadow:var(--shadow)}
+    .venue-card img{width:100%;height:100%;object-fit:cover}
+    .venue-card.main{grid-row:1 / 4;grid-column:1}
+    .venue-card.photo-a{grid-column:2;grid-row:1}
+    .venue-card.photo-b{grid-column:3;grid-row:1}
+    .venue-card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,10,18,.78),transparent 44%)}
+    .venue-card.photo::after{background:linear-gradient(0deg,rgba(5,10,18,.28),transparent 52%)}
+    .venue-card .caption{position:absolute;left:18px;right:18px;bottom:18px;z-index:2}
+    .venue-card .caption h3{font-size:32px;margin-bottom:8px}
+    .venue-card .caption p{font-size:14px;color:#e4f2ff;line-height:1.5}
+    .venue-info-card{padding:20px;border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;min-height:0}
+    .venue-info-card strong{display:block;font-size:15px;color:#fff;margin-bottom:8px}
+    .venue-info-card span{font-size:13px;line-height:1.55;color:var(--muted)}
+    .venue-info-card.info-a{grid-column:2;grid-row:2}
+    .venue-info-card.info-b{grid-column:3;grid-row:2}
+    .venue-info-card.info-c{grid-column:2;grid-row:3}
+    .venue-info-card.info-d{grid-column:3;grid-row:3}
+
+    /* Ticket */
+    .ticket-section{background:linear-gradient(180deg,#06111c,var(--bg))}
+    .ticket-box{position:relative;margin-top:44px;border-radius:30px;overflow:hidden;background:linear-gradient(145deg,#081624,#0c1c2d 52%,#08131f);border:1px solid rgba(11,166,255,.22);box-shadow:var(--shadow)}
+    .ticket-box::before,.ticket-box::after{content:"";position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:var(--bg)}
+    .ticket-box::before{left:-23px}
+    .ticket-box::after{right:-23px}
+    .ticket-inner{display:grid;grid-template-columns:1.15fr .85fr}
+    .ticket-left{padding:42px}
+    .ticket-right{padding:42px;border-left:2px dashed rgba(255,255,255,.14);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,rgba(11,166,255,.13),rgba(255,255,255,.025))}
+    .ticket-badge{display:inline-flex;padding:10px 12px;border-radius:999px;background:rgba(255,216,77,.12);border:1px solid rgba(255,216,77,.28);color:var(--yellow);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;margin-bottom:18px}
+    .ticket-left h3{font-size:48px;margin-bottom:14px}
+    .ticket-meta{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 24px}
+    .ticket-meta span{padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:12px;font-weight:800;color:#eff8ff}
+    .ticket-features{display:grid;gap:10px;margin-bottom:22px}
+    .ticket-features li{list-style:none;display:flex;gap:10px;color:#d9e5f1;line-height:1.55}
+    .ticket-features li::before{content:"•";color:var(--green);font-weight:900}
+    .ticket-note{font-size:14px;color:var(--muted-2)}
+    .price-label{display:block;color:var(--muted-2);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+    .price-value{font-family:var(--display);font-size:96px;line-height:.9;color:#fff;margin-bottom:14px}
+    .price-desc{margin-bottom:20px;color:#e5f2fc;font-size:15px;line-height:1.6}
+    .cta-stack{display:flex;flex-direction:column;gap:12px;width:100%}
+    .cta-stack .btn{width:100%}
+
+    .faq-list{margin-top:40px;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+    .faq-list details{border-bottom:1px solid var(--line);background:rgba(255,255,255,.025)}
+    .faq-list details:last-child{border-bottom:none}
+    .faq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:18px;padding:24px 26px;font-weight:900;color:#fff}
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary::after{content:"+";font-size:24px;color:var(--blue)}
+    .faq-list details[open] summary::after{content:"–"}
+    .faq-list p{padding:0 26px 24px;font-size:15px}
+    .final{padding:120px 0;text-align:center;background:radial-gradient(circle at center,rgba(11,166,255,.16),transparent 28%),radial-gradient(circle at 60% 20%,rgba(255,216,77,.08),transparent 26%),#040912}
+    .final h2{max-width:960px;margin-inline:auto}
+    .final p{max-width:720px;margin:0 auto 34px}
+
+    footer{padding:28px 0;background:#03070d;border-top:1px solid var(--line)}
+    footer .container{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+    .footer-brand{display:flex;align-items:center;gap:14px}
+    .footer-brand img{height:60px;width:auto}
+    footer span{font-size:13px;color:var(--muted-2)}
+
+    /* Floating WhatsApp */
+    .wa-float{
+      position:fixed;right:20px;bottom:22px;z-index:45;display:flex;align-items:center;gap:12px;
+      background:linear-gradient(135deg,#1bd06b,#0f9f50);padding:12px 16px 12px 12px;border-radius:999px;color:#fff;
+      box-shadow:0 18px 40px rgba(23,201,102,.34);opacity:0;visibility:hidden;transform:translateY(18px);
+      transition:.28s ease;max-width:310px;border:1px solid rgba(255,255,255,.16)
+    }
+    .wa-float.visible{opacity:1;visibility:visible;transform:none}
+    .wa-float .icon{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18);flex:0 0 44px}
+    .wa-float .text{display:flex;flex-direction:column;line-height:1.15}
+    .wa-float strong{font-size:13px;white-space:nowrap}
+    .wa-float span{font-size:11px;opacity:.92;animation:pulseText 1.7s ease-in-out infinite}
+    @keyframes pulseText{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+
+    /* Modal */
+    .lead-modal{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(2,6,12,.82);backdrop-filter:blur(14px)}
+    .lead-modal.active{display:flex}
+    .lead-box{width:min(560px,100%);max-height:min(92vh,900px);overflow:auto;border-radius:28px;background:linear-gradient(145deg,#071521,#050a12);border:1px solid var(--line-2);box-shadow:0 34px 90px rgba(0,0,0,.58);padding:28px;position:relative}
+    .lead-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;font-size:22px;cursor:pointer}
+    .modal-brand{height:58px;width:auto;margin-bottom:18px}
+    .lead-box h3{font-size:38px;margin-bottom:12px}
+    .lead-box p{font-size:15px;line-height:1.6;margin-bottom:18px}
+    .lead-form{display:grid;gap:14px}
+    .lead-field label{display:block;font-size:12px;color:var(--muted-2);font-weight:900;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+    .lead-field input,.lead-field select{width:100%;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.055);color:#fff;padding:15px;font:600 15px var(--font);outline:none;height:54px}
+    .lead-submit{width:100%;margin-top:2px}
+    .lead-loading-message.active{display:block!important}
+
+    .lead-submit.is-loading{position:relative;pointer-events:none;opacity:.86}
+    .lead-submit.is-loading::before{
+      content:"";
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.42);
+      border-top-color:#fff;
+      animation:spin .8s linear infinite;
+      display:inline-block;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+
+    @media (max-width:1100px){
+      .container{width:min(var(--max),calc(100% - 36px))}
+      .nav-inner{width:min(1280px,calc(100% - 36px))}
+      .split,.speaker-layout,.ticket-inner{grid-template-columns:1fr}
+      .quote-box{position:relative;top:auto}
+      .speaker-panel{padding:0}
+      .venue-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:320px 210px auto auto;gap:14px}
+      .venue-card.main{grid-column:1/-1;grid-row:1;min-height:320px}
+      .venue-card.photo-a{grid-column:1;grid-row:2}
+      .venue-card.photo-b{grid-column:2;grid-row:2}
+      .venue-info-card.info-a{grid-column:1;grid-row:3}
+      .venue-info-card.info-b{grid-column:2;grid-row:3}
+      .venue-info-card.info-c{grid-column:1;grid-row:4}
+      .venue-info-card.info-d{grid-column:2;grid-row:4}
+      .ticket-right{border-left:none;border-top:2px dashed rgba(255,255,255,.14)}
+      .value-grid.four{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:980px){
+      .nav-links a:not(.btn){display:none}
+      .proof-grid{grid-template-columns:repeat(2,1fr)}
+      .proof-item:nth-child(2){border-right:none}
+      .proof-item{border-bottom:1px solid var(--line)}
+      .proof-item:nth-last-child(-n+2){border-bottom:none}
+      .value-grid,.emotion-grid{grid-template-columns:repeat(2,1fr)}
+      .speaker-gallery{grid-template-columns:1fr 1fr;grid-template-rows:280px 220px}
+      .partner-logos{grid-template-columns:repeat(2,1fr)}
+      .audience-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width:620px){
+      .container{width:calc(100% - 30px)}
+      .nav{
+        height:62px;
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-100%);
+        transition:.25s ease;
+        background:rgba(5,10,18,.92);
+        backdrop-filter:blur(16px);
+      }
+      .nav.scrolled{opacity:1;visibility:visible;transform:translateY(0)}
+      .nav-inner{
+        width:calc(100% - 24px);
+        gap:10px;
+      }
+      .brand{
+        min-width:0;
+        max-width:148px;
+      }
+      .brand img{
+        height:42px;
+        max-width:148px;
+        object-fit:contain;
+      }
+      .nav-links{
+        margin-left:auto;
+        gap:0;
+        flex:0 0 auto;
+      }
+      .nav .btn{
+        min-height:40px;
+        padding:0 12px;
+        font-size:10px;
+        letter-spacing:.035em;
+        max-width:142px;
+      }
+      .section{padding:74px 0}
+      h1{font-size:48px}
+      h2{font-size:42px}
+      .hero{min-height:auto;padding:24px 0 34px;display:flex;flex-direction:column;background:#050a12}
+      .hero .container{order:1;margin-top:0}
+      .hero-bg{
+        order:2;
+        position:relative;
+        inset:auto;
+        width:calc(100% - 30px);
+        height:340px;
+        margin:20px auto 0;
+        background:#07111c;
+        overflow:hidden;
+        border:1px solid rgba(255,255,255,.09);
+        border-radius:24px;
+        box-shadow:0 22px 60px rgba(0,0,0,.28);
+      }
+      .hero-bg picture,.hero-bg img{width:100%;height:100%;display:block}
+      .hero-bg img{object-fit:cover;object-position:center 34%;transform:none}
+      .hero-overlay{display:none}
+      .hero-content{max-width:none;background:linear-gradient(180deg,rgba(5,10,18,.94),rgba(5,10,18,.99));border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:24px 16px 22px;backdrop-filter:blur(10px);box-shadow:0 22px 60px rgba(0,0,0,.30)}
+      .hero-logo{width:180px;margin-bottom:16px}
+      .hero-kicker{font-size:10px;letter-spacing:.12em;margin-bottom:12px}
+      .hero-kicker::before{width:28px}
+      .hero-sub{font-size:16px;line-height:1.58;margin:18px 0}
+      .authority-line{display:block;border-radius:18px;font-size:12px;line-height:1.55}
+      .hero-info{gap:8px;margin-bottom:16px}
+      .hero-info span{font-size:12px;padding:9px 11px}
+      .countdown-card{grid-template-columns:repeat(4,1fr);gap:8px;max-width:none;margin-top:16px}
+      .countdown-item{padding:11px 6px;border-radius:14px}
+      .countdown-item strong{font-size:28px}
+      .countdown-item span{font-size:9px}
+      .hero-ctas .btn{width:100%}
+      .hero-mini,.scroll-note{display:none}
+      .proof-grid,.compare,.value-grid,.emotion-grid,.partner-logos,.value-grid.four{grid-template-columns:1fr}
+      .venue-mosaic{grid-template-columns:1fr;grid-template-rows:auto;gap:12px}
+      .venue-card.main,.venue-card.photo-a,.venue-card.photo-b,.venue-info-card.info-a,.venue-info-card.info-b,.venue-info-card.info-c,.venue-info-card.info-d{grid-column:1;grid-row:auto}
+      .venue-card.main{min-height:280px}
+      .venue-card.photo{min-height:180px}
+      .venue-info-card{min-height:92px}
+
+      .split{gap:36px}
+      .quote-box{padding:26px}
+      .inline-cta-card{display:block;padding:24px}
+      .inline-cta-card .btn{width:100%;margin-top:18px}
+      .section-cta .btn{width:100%}
+      .speaker-gallery{grid-template-columns:1fr;grid-template-rows:310px 230px 230px}
+      .photo-card.main{grid-row:auto}
+      .venue-grid{grid-template-columns:1fr}
+      .venue-card.main{min-height:270px}
+      .ticket-left,.ticket-right{padding:28px}
+      .ticket-left h3{font-size:38px}
+      .price-value{font-size:76px}
+      footer .container{align-items:flex-start}
+      .footer-brand img{height:48px}
+      .wa-float{right:16px;bottom:16px;padding:10px;border-radius:50%;width:58px;height:58px;justify-content:center}
+      .wa-float .icon{width:42px;height:42px}
+      .wa-float .text{display:none}
+    }
+
+    .section-soft + .section-soft{border-top:1px solid rgba(255,255,255,.04)}
+    @media (max-width:620px){
+      .hero-bg{height:310px}
+      .countdown-context{font-size:12px;line-height:1.45}
+      .countdown-wrap{margin-top:18px}
+      .authority-line b{white-space:normal}
+      .speaker{padding:74px 0}
+    }
+
+  </style>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NLMDR74P');
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6VV3FGLXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B6VV3FGLXX');
+  </script>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '311413340280663');
+    fbq('track', 'PageView');
+  </script>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLMDR74P" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=311413340280663&ev=PageView&noscript=1" /></noscript>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand"><img src="assets/logo-reparador-campinas.png" alt="Reparador em Foco em Campinas"></a>
+      <nav class="nav-links">
+        <a href="#pilares">Pilares</a>
+        <a href="#sergio">Sergio</a>
+        <a href="#local">Local</a>
+        <a href="#faq">FAQ</a>
+        <a href="#checkout" class="btn btn-primary open-lead">Garantir vaga</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg">
+        <picture>
+          <source media="(max-width: 700px)" srcset="assets/hero-mobile-final.png">
+          <img src="assets/hero-desktop-final.png" alt="Sergio Santos em oficina mecânica">
+        </picture>
+      </div>
+      <div class="hero-overlay"></div>
+
+      <div class="container">
+        <div class="hero-content reveal show">
+          <img class="hero-logo" src="assets/logo-reparador-campinas.png" alt="Reparador em Foco em Campinas">
+          <div class="hero-kicker">Imersão presencial para donos de oficina</div>
+          <h1>Oficina cheia <span class="grad-blue">não significa</span> oficina lucrativa.</h1>
+          <p class="hero-sub lead">Aprenda, em um dia presencial, a identificar os gargalos que fazem sua oficina faturar sem lucrar e saia com um plano para ajustar preço, processo, equipe e gestão.</p>
+
+          <div class="authority-line">
+            Com <b>Sergio Santos</b>, criador do Método SR e fundador da SR Motors.
+          </div>
+
+          <div class="hero-info">
+            <span>23 de Maio</span>
+            <span>Campinas/SP</span>
+            <span>8h às 17h</span>
+            <span>Evento presencial</span>
+          </div>
+
+          <div class="countdown-wrap">
+            <div class="countdown-context">As inscrições seguem abertas enquanto houver vagas disponíveis no auditório.</div>
+            <div class="countdown-card" aria-label="Contagem regressiva para o evento">
+              <div class="countdown-item"><strong id="cd-days">--</strong><span>dias</span></div>
+              <div class="countdown-item"><strong id="cd-hours">--</strong><span>horas</span></div>
+              <div class="countdown-item"><strong id="cd-minutes">--</strong><span>min</span></div>
+              <div class="countdown-item"><strong id="cd-seconds">--</strong><span>seg</span></div>
+            </div>
+          </div>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary open-lead" href="#checkout">Garantir minha vaga</a>
+            <a class="btn btn-outline" href="#sergio">Conhecer o Sergio</a>
+          </div>
+          <div class="hero-mini">Vagas limitadas para uma experiência mais prática, próxima e aplicável.</div>
+        </div>
+      </div>
+      <div class="scroll-note">role para ver mais</div>
+    </section>
+
+    <section class="proof">
+      <div class="container proof-grid">
+        <div class="proof-item"><strong>1 dia</strong><span>de imersão prática</span></div>
+        <div class="proof-item"><strong>Campinas</strong><span>SESCON Campinas</span></div>
+        <div class="proof-item"><strong>8h às 17h</strong><span>23 de Maio</span></div>
+        <div class="proof-item"><strong>Vagas</strong><span>limitadas</span></div>
+      </div>
+    </section>
+
+    <section class="section section-open">
+      <div class="container split">
+        <div class="reveal">
+          <h2>Você trabalha muito, a oficina gira… <span class="grad-warm">mas sobra pouca clareza</span> <span class="grad-blue">sobre o lucro?</span></h2>
+          <p class="lead">Esse é o ponto que trava muitas oficinas. Existe movimento, existe demanda, existe correria. Mas falta controle, padrão, processo e visão de dono para transformar esforço em resultado.</p>
+          <div class="checks">
+            <div class="check"><i></i><span>O pátio movimenta, mas o caixa vive apertado no fim do mês.</span></div>
+            <div class="check"><i></i><span>Você resolve tudo no improviso e sente que a oficina depende demais da sua presença.</span></div>
+            <div class="check"><i></i><span>Orçamento, atendimento, entrada e saída de carro ainda não seguem um padrão forte.</span></div>
+            <div class="check"><i></i><span>A precificação ainda está muito presa no costume, no concorrente ou no “achismo”.</span></div>
+          </div>
+          <div class="section-cta reveal">
+            <a class="btn btn-primary open-lead" href="#checkout">Quero participar da imersão</a>
+            <div class="section-cta-note">Preencha seus dados e fale com a equipe pelo WhatsApp.</div>
+          </div>
+        </div>
+
+        <aside class="quote-box reveal">
+          <p>Se a oficina está cheia, por que o dinheiro não aparece como deveria?</p>
+          <small>Na maioria das vezes, não é falta de cliente. É falta de gestão, critério, acompanhamento de números e uma operação mais redonda.</small>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-blueprint">
+      <div class="container">
+        <h2 class="reveal">Mais clientes <span class="grad-blue">não resolvem</span> uma oficina <span class="grad-warm">desorganizada.</span></h2>
+        <p class="lead reveal">Quando a operação está bagunçada, mais movimento pode significar apenas mais pressão, mais retrabalho e mais descontrole. Antes de escalar, o dono precisa organizar a base.</p>
+        <div class="compare">
+          <div class="compare-card bad reveal"><span>Quando falta estrutura</span><p>Mais carros entrando podem gerar mais atraso, mais atrito com o cliente, mais dependência do dono e menos lucro do que parecia.</p></div>
+          <div class="compare-card good reveal"><span>Quando a base está certa</span><p>Processo, preço, equipe e acompanhamento transformam a oficina em uma operação mais previsível, organizada e lucrativa.</p></div>
+        </div>
+
+        <div class="inline-cta-card reveal">
+          <div>
+            <strong>Saia do improviso.</strong>
+            <span>Reserve seu lugar para passar um dia fora da correria, olhando para sua oficina com números, método e prioridades claras.</span>
+          </div>
+          <a class="btn btn-primary open-lead" href="#checkout">Garantir minha vaga</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-amber">
+      <div class="container">
+        <h2 class="reveal">Uma imersão para quem quer <span class="grad-blue">tirar a oficina do improviso</span> e colocar o negócio <span class="grad-warm">na direção certa.</span></h2>
+        <p class="lead reveal">No Reparador em Foco, o conteúdo parte da realidade da oficina. A proposta é prática: te ajudar a enxergar gargalos, entender prioridades e sair com uma linha de ação aplicável.</p>
+        <div class="value-grid">
+          <div class="value-card reveal"><b>01</b><h3>Diagnóstico</h3><p>Você vai identificar onde a oficina perde dinheiro, tempo, previsibilidade e margem.</p></div>
+          <div class="value-card accent reveal"><b>02</b><h3>Direção</h3><p>Você vai entender o que precisa ajustar primeiro, sem confusão e sem excesso de teoria.</p></div>
+          <div class="value-card reveal"><b>03</b><h3>Plano prático</h3><p>Você sai com mais clareza para organizar gestão, operação, precificação e crescimento.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pilares" class="section section-open">
+      <div class="container">
+        <h2 class="reveal">Os pilares que sustentam uma oficina mais <span class="grad-blue">organizada</span> e <span class="grad-warm">lucrativa</span>.</h2>
+        <div class="value-grid">
+          <div class="value-card reveal"><b>1</b><h3>Gestão financeira</h3><p>Entenda melhor para onde o dinheiro está indo e pare de confundir faturamento com lucro.</p></div>
+          <div class="value-card reveal"><b>2</b><h3>Precificação</h3><p>Proteja margem, pare de cobrar no chute e ganhe segurança para defender seu preço.</p></div>
+          <div class="value-card reveal"><b>3</b><h3>Processos internos</h3><p>Organize atendimento, checklist, orçamento e rotina para reduzir retrabalho.</p></div>
+          <div class="value-card reveal"><b>4</b><h3>Marketing para oficina</h3><p>Entenda como gerar demanda de forma mais previsível e menos dependente de indicação.</p></div>
+          <div class="value-card reveal"><b>5</b><h3>Gestão de equipe</h3><p>Crie padrão, reduza centralização e aumente produtividade da operação.</p></div>
+          <div class="value-card reveal"><b>6</b><h3>Mentalidade empresarial</h3><p>Saia da posição de apagador de incêndio e assuma o papel de dono de empresa.</p></div>
+        </div>
+
+        <div class="inline-cta-card reveal">
+          <div>
+            <strong>Um dia para encontrar os gargalos que travam seu lucro.</strong>
+            <span>A proposta é simples: trabalhar com direção, enxergar os números e tomar decisões melhores antes que a rotina engula o dono.</span>
+          </div>
+          <a class="btn btn-primary open-lead" href="#checkout">Reservar minha vaga</a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section section-deep">
+      <div class="container">
+        <h2 class="reveal">O que muda quando o dono olha para a oficina <span class="grad-blue">como empresa</span></h2>
+        <p class="lead reveal">O objetivo do evento é gerar clareza prática. Não é uma promessa vazia de faturamento: é um dia para você organizar a forma como enxerga preço, margem, equipe, processo e decisão.</p>
+
+        <div class="value-grid four">
+          <div class="value-card reveal"><b>01</b><h3>Menos achismo</h3><p>Você passa a tomar decisões com mais critério, e não apenas pela pressão do dia.</p></div>
+          <div class="value-card reveal"><b>02</b><h3>Mais margem</h3><p>Ao entender melhor preço e custo, fica mais fácil proteger o lucro da operação.</p></div>
+          <div class="value-card reveal"><b>03</b><h3>Mais padrão</h3><p>Atendimento, checklist, orçamento e entrega deixam de depender só da memória do dono.</p></div>
+          <div class="value-card reveal"><b>04</b><h3>Mais direção</h3><p>Você sai com prioridades mais claras para aplicar na rotina da oficina.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <h2 class="reveal"><span class="grad-blue">Esse evento</span> é para você?</h2>
+        <p class="lead reveal">A imersão foi criada para donos de oficina que sabem que existe potencial no negócio, mas precisam transformar correria em controle e faturamento em resultado.</p>
+
+        <div class="audience-grid">
+          <div class="audience-box good reveal">
+            <h3>É para você se...</h3>
+            <ul class="audience-list">
+              <li>Sua oficina tem movimento, mas o lucro não aparece com clareza.</li>
+              <li>Você sente que tudo depende de você para funcionar.</li>
+              <li>Sua precificação ainda depende de costume, concorrente ou tentativa.</li>
+              <li>Você quer crescer sem transformar a oficina em mais bagunça.</li>
+            </ul>
+          </div>
+          <div class="audience-box no reveal">
+            <h3>Talvez não seja para você se...</h3>
+            <ul class="audience-list">
+              <li>Você procura uma aula técnica de mecânica.</li>
+              <li>Você quer uma solução mágica sem olhar números e processos.</li>
+              <li>Você ainda não quer assumir a oficina como uma empresa.</li>
+              <li>Você busca apenas motivação, sem plano de ação.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-blueprint">
+      <div class="container">
+        <h2 class="reveal">Antes de buscar mais clientes, entenda <span class="grad-warm">qual oficina</span> você está <span class="grad-blue">construindo</span>.</h2>
+        <p class="lead reveal">O Reparador em Foco foi pensado para o dono que cansou de viver no improviso. A ideia é mostrar, na prática, a diferença entre uma operação que consome o dono e uma oficina que funciona com controle, processo e direção.</p>
+
+        <div class="emotion-grid">
+          <div class="emotion-card reveal">
+            <div class="emotion-thumb"><img src="assets/caos-na-oficina.png" alt="Caos na oficina"></div>
+            <div class="emotion-copy"><span class="tag">Antes</span><strong>Caos na oficina</strong><p>Quando não existe processo, o dono vira o sistema da empresa.</p></div>
+          </div>
+          <div class="emotion-card reveal">
+            <div class="emotion-thumb"><img src="assets/oficina-sob-controle.png" alt="Oficina sob controle"></div>
+            <div class="emotion-copy"><span class="tag">Depois</span><strong>Oficina sob controle</strong><p>Com rotina, padrão e clareza, a operação começa a depender menos do improviso.</p></div>
+          </div>
+          <div class="emotion-card reveal">
+            <div class="emotion-thumb"><img src="assets/oficina-cheia-sem-lucro.png" alt="Oficina cheia sem lucro"></div>
+            <div class="emotion-copy"><span class="tag">Contraste</span><strong>Movimento sem lucro</strong><p>Faturar mais não resolve quando preço, margem e processo estão desalinhados.</p></div>
+          </div>
+          <div class="emotion-card reveal">
+            <div class="emotion-thumb"><img src="assets/dono-com-visao-de-empresa.png" alt="Dono com visão de empresa"></div>
+            <div class="emotion-copy"><span class="tag">Transformação</span><strong>Visão de empresa</strong><p>A oficina começa a crescer quando o dono assume a gestão com método.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section section-open">
+      <div class="container split">
+        <div class="reveal">
+          <h2>Por que separar <span class="grad-warm">um dia</span> para isso?</h2>
+          <p class="lead">Porque dentro da oficina o dono vive apagando incêndio. Fora da rotina, com método e direcionamento, fica mais fácil enxergar o que está travando o crescimento e voltar com prioridades objetivas.</p>
+        </div>
+        <div class="checks reveal">
+          <div class="check"><i></i><span>Você se afasta da correria para pensar com clareza.</span></div>
+          <div class="check"><i></i><span>Você compara sua realidade com outros donos de oficina.</span></div>
+          <div class="check"><i></i><span>Você entende quais ajustes têm maior impacto no lucro.</span></div>
+          <div class="check"><i></i><span>Você volta com uma direção mais simples para executar.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sergio" class="speaker">
+      <div class="container speaker-layout">
+        <div class="speaker-gallery reveal">
+          <div class="photo-card main"><img src="assets/sergio-1.jpg" alt="Sergio Santos na oficina"><span class="tag">Quem é o Sergio</span></div>
+          <div class="photo-card"><img src="assets/sergio-3.webp" alt="Sergio Santos palestrando"><span class="tag">Palestras e eventos</span></div>
+          <div class="photo-card"><img src="assets/sergio-2.jpg" alt="Sergio Santos na SR Motors"><span class="tag">SR Motors</span></div>
+        </div>
+
+        <div class="speaker-panel reveal">
+          <h2>Sergio Santos</h2>
+          <p class="lead">Sergio não fala de oficina olhando de fora. Ele vive a realidade da oficina todos os dias e traduz essa experiência em gestão prática para donos do setor automotivo.</p>
+          <ul class="curriculum">
+            <li>Fundador da SR Motors, oficina referência em gestão automotiva em Jundiaí/SP.</li>
+            <li>Criador do Método SR, metodologia aplicada para ajudar oficinas a saírem do improviso e crescerem com mais estrutura.</li>
+            <li>Ex-professor do SENAI e palestrante em eventos do setor automotivo em todo o Brasil.</li>
+            <li>Mentor de donos de oficina que buscam transformar operação em empresa organizada e lucrativa.</li>
+          </ul>
+
+          <span class="partner-label">Parceiros e patrocinadores que fortalecem essa imersão</span>
+          <div class="partner-logos">
+            <div class="partner-pill logo-dark"><img src="assets/logo-metodo-sr.png" alt="Método SR"></div>
+            <div class="partner-pill logo-light"><img src="assets/logo-mercado-livre.png" alt="Mercado Livre"></div>
+            <div class="partner-pill logo-dark"><img src="assets/logo-escola-mecanico.png" alt="Escola do Mecânico"></div>
+            <div class="partner-pill logo-dark"><img src="assets/logo-ultracar.png" alt="Ultracar"></div>
+            <div class="partner-pill logo-light"><img src="assets/logo-mte.png" alt="MTE-THOMSON"></div>
+            <div class="partner-pill logo-light"><img src="assets/logo-gates.png" alt="Gates"></div>
+          </div>
+
+          <div class="section-cta">
+            <a class="btn btn-primary open-lead" href="#checkout">Quero aprender com o Sergio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-open">
+      <div class="container">
+        <h2 class="reveal">O que você leva desse <span class="grad-blue">dia presencial</span></h2>
+        <p class="lead reveal">O ingresso não é apenas para assistir a uma palestra. É para passar um dia olhando para a oficina com mais critério e sair com prioridades mais claras.</p>
+        <div class="value-grid four">
+          <div class="value-card reveal"><b>01</b><h3>Diagnóstico</h3><p>Uma visão mais clara dos gargalos que tiram margem, tempo e previsibilidade.</p></div>
+          <div class="value-card reveal"><b>02</b><h3>Preço e margem</h3><p>Mais segurança para entender preço, custo, serviço e lucro de forma prática.</p></div>
+          <div class="value-card reveal"><b>03</b><h3>Processos</h3><p>Direção para reduzir improviso em atendimento, orçamento, equipe e rotina.</p></div>
+          <div class="value-card reveal"><b>04</b><h3>Prioridades</h3><p>Um mapa mais claro do que ajustar primeiro para organizar e crescer.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="local" class="section section-amber">
+      <div class="container">
+        <h2 class="reveal">Um ambiente fora da correria da oficina, preparado para você <span class="grad-blue">pensar no negócio</span></h2>
+        <p class="lead reveal">A imersão acontecerá no SESCON Campinas, em um auditório confortável, climatizado e com estrutura adequada para um dia de foco total.</p>
+
+        <div class="venue-mosaic reveal">
+          <div class="venue-card main">
+            <img src="assets/local-1.jpg" alt="SESCON Campinas - auditório do evento">
+            <div class="caption"><h3>SESCON Campinas</h3><p>Rua Walther Schimidt, 175 · Parque dos Jacarandás · Campinas/SP</p></div>
+          </div>
+
+          <div class="venue-card photo photo-a"><img src="assets/local-2.jpg" alt="Auditório com poltronas do SESCON Campinas"></div>
+          <div class="venue-card photo photo-b"><img src="assets/local-3.jpg" alt="Estrutura do auditório"></div>
+
+          <div class="venue-info-card info-a">
+            <strong>Data e horário</strong>
+            <span>23 de Maio · das 8h às 17h</span>
+          </div>
+          <div class="venue-info-card info-b">
+            <strong>Endereço</strong>
+            <span>Rua Walther Schimidt, 175 · Campinas/SP</span>
+          </div>
+          <div class="venue-info-card info-c">
+            <strong>Conforto</strong>
+            <span>Auditório climatizado, estrutura confortável e ambiente preparado para foco.</span>
+          </div>
+          <div class="venue-info-card info-d">
+            <strong>Estacionamento</strong>
+            <span>Até 80 carros para participantes.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="checkout" class="section ticket-section">
+      <div class="container">
+        <h2 class="reveal">Garanta sua vaga no <span class="grad-blue">Reparador em Foco</span></h2>
+        <p class="lead reveal">Participe da imersão presencial que vai te ajudar a identificar os gargalos da sua oficina e construir um plano de ação para organizar gestão, processos, precificação e crescimento.</p>
+
+        <div class="ticket-box reveal">
+          <div class="ticket-inner">
+            <div class="ticket-left">
+              <span class="ticket-badge">Ingresso individual</span>
+              <h3>Seu acesso ao evento</h3>
+              <div class="ticket-meta">
+                <span>Campinas/SP</span><span>23 de Maio</span><span>8h às 17h</span><span>Imersão presencial</span>
+              </div>
+              <ul class="ticket-features">
+                <li>Acesso à imersão presencial das 8h às 17h.</li>
+                <li>Conteúdo prático sobre gestão, precificação, processos e crescimento.</li>
+                <li>Direcionamento para identificar gargalos da sua oficina.</li>
+                <li>Ambiente presencial com outros donos de oficina.</li>
+                <li>Condição especial para compras em grupo mediante consulta com a equipe.</li>
+              </ul>
+              <p class="ticket-note">Se quiser trazer mais pessoas da sua oficina, fale com a equipe para verificar possibilidade de condição em grupo.</p>
+            </div>
+
+            <div class="ticket-right">
+              <span class="price-label">Investimento</span>
+              <div class="price-value">R$497</div>
+              <p class="price-desc">Acesso à imersão presencial com um dia inteiro de conteúdo, clareza e direcionamento para sua oficina.</p>
+              <div class="cta-stack">
+                <a href="#lead-form" class="btn btn-primary open-lead">Garantir minha vaga</a>
+                <a href="#whatsapp" class="btn btn-secondary wa-direct">
+                  <svg class="wa-svg" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.02 3C8.84 3 3 8.84 3 16.02c0 2.3.6 4.55 1.75 6.53L3 29l6.62-1.73a13 13 0 0 0 6.4 1.63C23.2 28.9 29 23.2 29 16.02 29 8.84 23.2 3 16.02 3Zm0 23.68c-2.03 0-4-.54-5.73-1.57l-.41-.24-3.93 1.03 1.05-3.83-.27-.43a10.71 10.71 0 0 1-1.5-5.62c0-5.95 4.84-10.79 10.79-10.79S26.8 10.07 26.8 16.02 21.97 26.68 16.02 26.68Zm5.92-8.08c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.52-.16-.74.16-.22.32-.85 1.05-1.04 1.26-.19.22-.38.24-.7.08-.32-.16-1.37-.5-2.61-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.32-.02-.5.14-.66.15-.14.32-.38.49-.57.16-.19.22-.32.32-.54.11-.22.05-.41-.03-.57-.08-.16-.74-1.78-1.01-2.44-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.57.08-.87.41-.3.32-1.14 1.11-1.14 2.71s1.17 3.15 1.33 3.37c.16.22 2.3 3.5 5.57 4.9.78.34 1.39.54 1.86.69.78.25 1.49.21 2.05.13.63-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.14-.3-.22-.62-.38Z"/></svg>
+                  Falar com a equipe
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section section-deep">
+      <div class="container">
+        <h2 class="reveal"><span class="grad-blue">Perguntas</span> frequentes</h2>
+        <div class="faq-list reveal">
+          <details><summary>O evento é para mecânico ou para dono de oficina?</summary><p>O foco principal é atender donos de oficina, gestores automotivos e profissionais que desejam conduzir a oficina como empresa. Mecânicos com visão de crescimento também podem aproveitar bastante.</p></details>
+          <details><summary>É um curso técnico de mecânica?</summary><p>Não. O foco é gestão, precificação, processos, marketing, equipe e crescimento da oficina.</p></details>
+          <details><summary>Onde será realizado?</summary><p>No SESCON Campinas, na Rua Walther Schimidt, 175, Parque dos Jacarandás, em Campinas/SP.</p></details>
+          <details><summary>Tem estacionamento?</summary><p>Sim. O local conta com estacionamento para até 80 carros.</p></details>
+          <details><summary>Posso levar minha equipe?</summary><p>Sim. Inclusive há interesse em grupo. Fale com a equipe para consultar condições quando houver mais de um participante da mesma oficina.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="container reveal">
+        <h2>Chegou a hora de conduzir sua oficina com mais clareza, número e direção.</h2>
+        <p>Você já conhece a correria. Agora é hora de parar por um dia, olhar para o negócio com critério e voltar com prioridades mais claras para executar.</p>
+        <a class="btn btn-primary open-lead" href="#checkout">Quero garantir minha vaga</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="assets/logo-reparador-campinas.png" alt="Reparador em Foco em Campinas">
+        <span>Reparador em Foco • Campinas/SP • 23 de Maio</span>
+      </div>
+      <span>Evento presencial para donos de oficina e gestores automotivos.</span>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="waFloat" href="#whatsapp" aria-label="Falar com a equipe no WhatsApp">
+    <div class="icon">
+      <svg class="wa-svg" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.02 3C8.84 3 3 8.84 3 16.02c0 2.3.6 4.55 1.75 6.53L3 29l6.62-1.73a13 13 0 0 0 6.4 1.63C23.2 28.9 29 23.2 29 16.02 29 8.84 23.2 3 16.02 3Zm0 23.68c-2.03 0-4-.54-5.73-1.57l-.41-.24-3.93 1.03 1.05-3.83-.27-.43a10.71 10.71 0 0 1-1.5-5.62c0-5.95 4.84-10.79 10.79-10.79S26.8 10.07 26.8 16.02 21.97 26.68 16.02 26.68Zm5.92-8.08c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.52-.16-.74.16-.22.32-.85 1.05-1.04 1.26-.19.22-.38.24-.7.08-.32-.16-1.37-.5-2.61-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.32-.02-.5.14-.66.15-.14.32-.38.49-.57.16-.19.22-.32.32-.54.11-.22.05-.41-.03-.57-.08-.16-.74-1.78-1.01-2.44-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.57.08-.87.41-.3.32-1.14 1.11-1.14 2.71s1.17 3.15 1.33 3.37c.16.22 2.3 3.5 5.57 4.9.78.34 1.39.54 1.86.69.78.25 1.49.21 2.05.13.63-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.14-.3-.22-.62-.38Z"/></svg>
+    </div>
+    <div class="text">
+      <strong>Tirar dúvida no WhatsApp</strong>
+      <span>Fale com a equipe agora</span>
+    </div>
+  </a>
+
+  <div class="lead-modal" id="leadModal" aria-hidden="true">
+    <div class="lead-box">
+      <button class="lead-close" id="closeLead" aria-label="Fechar">×</button>
+      <img class="modal-brand" src="assets/logo-reparador-campinas.png" alt="Reparador em Foco em Campinas">
+      <h3>Garanta sua vaga</h3>
+      <p>Preencha seus dados para falar com a equipe e receber o direcionamento para sua inscrição no Reparador em Foco.</p>
+
+      <form class="lead-form" id="leadForm">
+        <div class="lead-field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" placeholder="Seu nome completo" required></div>
+        <div class="lead-field"><label for="whatsapp">WhatsApp com DDD</label><input id="whatsapp" name="whatsapp" type="tel" placeholder="(11) 99999-9999" required></div>
+        <div class="lead-field">
+          <label for="ingressos">Quantidade de ingressos</label>
+          <select id="ingressos" name="ingressos" required>
+            <option value="">Selecione</option>
+            <option>1 ingresso</option>
+            <option>2 ingressos</option>
+            <option>3 ingressos</option>
+            <option>4 ou mais ingressos</option>
+          </select>
+        </div>
+        <button class="btn btn-primary lead-submit" type="submit">Continuar para o atendimento</button>
+        <div class="lead-loading-message" id="leadLoadingMessage" style="display:none;font-size:13px;line-height:1.5;color:#aebdce;text-align:center;margin-top:4px;">
+          Enviando seus dados... em instantes você será redirecionado para o WhatsApp.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const CONFIG = {
+      whatsappNumber: '5511913496405',
+      whatsappMessageBase: 'Olá! Tenho interesse no evento Reparador em Foco em Campinas e quero mais informações para concluir minha inscrição.',
+      sheetWebhookUrl: 'https://script.google.com/macros/s/AKfycbwHdXr0iNpci3Q8QQHz6z7nYAoC52NXG7YuDfUM6e7JyLBTjXOlZ4mmF7rWBTTUDeMJ/exec'
+    };
+
+    let lastScrollY = window.scrollY;
+
+    const observer = new IntersectionObserver((entries)=>{
+      const scrollingDown = window.scrollY >= lastScrollY;
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          entry.target.classList.remove('hide-up');
+        } else {
+          entry.target.classList.remove('show');
+          if(!scrollingDown) entry.target.classList.add('hide-up');
+          else entry.target.classList.remove('hide-up');
+        }
+      });
+      lastScrollY = window.scrollY;
+    },{threshold:.10, rootMargin:'0px 0px -8% 0px'});
+
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    const nav = document.getElementById('nav');
+    const leadModal = document.getElementById('leadModal');
+    const closeLead = document.getElementById('closeLead');
+    const openLeadBtns = document.querySelectorAll('.open-lead');
+    const leadForm = document.getElementById('leadForm');
+    const waFloat = document.getElementById('waFloat');
+    const waDirectBtns = document.querySelectorAll('.wa-direct, #waFloat');
+    let leadFormSubmitting = false;
+
+    function openModal(e){
+      if(e) e.preventDefault();
+      leadModal.classList.add('active');
+      document.body.classList.add('modal-open');
+      document.getElementById('nome')?.focus();
+    }
+    function closeModal(){
+      leadModal.classList.remove('active');
+      document.body.classList.remove('modal-open');
+    }
+    openLeadBtns.forEach(btn=>btn.addEventListener('click', openModal));
+    closeLead.addEventListener('click', closeModal);
+    leadModal.addEventListener('click', (e)=>{ if(e.target === leadModal) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+    function onlyDigits(value){ return (value || '').replace(/\D/g,''); }
+    function makeWhatsAppUrl(message){ return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`; }
+    function trackLead(source){
+      if(typeof fbq === 'function') fbq('track', 'Lead', {content_name:'Reparador em Foco', source});
+      if(typeof gtag === 'function') gtag('event', 'generate_lead', {event_category:'lead', event_label:source, value:497});
+    }
+
+    waDirectBtns.forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        trackLead('whatsapp_direct');
+        window.location.href = makeWhatsAppUrl(CONFIG.whatsappMessageBase);
+      })
+    });
+
+    leadForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+
+      if(leadFormSubmitting) return;
+      leadFormSubmitting = true;
+
+      const submitButton = leadForm.querySelector('.lead-submit');
+      const loadingMessage = document.getElementById('leadLoadingMessage');
+      if(submitButton){
+        submitButton.disabled = true;
+        submitButton.classList.add('is-loading');
+        submitButton.dataset.originalText = submitButton.textContent;
+        submitButton.textContent = 'Enviando e redirecionando...';
+      }
+      if(loadingMessage) loadingMessage.classList.add('active');
+
+      const formData = new FormData(leadForm);
+      const payload = {
+        nome: formData.get('nome')?.toString().trim(),
+        whatsapp: formData.get('whatsapp')?.toString().trim(),
+        whatsapp_digits: onlyDigits(formData.get('whatsapp')?.toString()),
+        ingressos: formData.get('ingressos')?.toString(),
+        origem: 'landing-page-reparador-em-foco',
+        data_envio: new Date().toISOString(),
+        pagina: window.location.href
+      };
+
+      trackLead('form_modal');
+
+      if(CONFIG.sheetWebhookUrl){
+        try{
+          await fetch(CONFIG.sheetWebhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {'Content-Type':'text/plain;charset=utf-8'},
+            body: JSON.stringify(payload)
+          });
+        }catch(err){
+          console.warn('Webhook/planilha não respondeu.', err);
+        }
+      }
+
+      const message = `${CONFIG.whatsappMessageBase}\n\n*Nome:* ${payload.nome}\n*WhatsApp:* ${payload.whatsapp}\n*Quantidade:* ${payload.ingressos}`;
+      window.location.href = makeWhatsAppUrl(message);
+    });
+
+    function updateCountdown(){
+      const target = new Date('2026-05-23T08:00:00-03:00').getTime();
+      const diff = Math.max(0, target - Date.now());
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff / (1000*60*60)) % 24);
+      const m = Math.floor((diff / (1000*60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+      const set = (id,val)=>{ const el=document.getElementById(id); if(el) el.textContent=String(val).padStart(2,'0'); };
+      set('cd-days', d);
+      set('cd-hours', h);
+      set('cd-minutes', m);
+      set('cd-seconds', s);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    function handleScroll(){
+      const progress = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if(window.scrollY > 80) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+
+      if(progress > 0.5) waFloat.classList.add('visible');
+      else waFloat.classList.remove('visible');
+      lastScrollY = window.scrollY;
+    }
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+  </script>
+</body>
+</html>
